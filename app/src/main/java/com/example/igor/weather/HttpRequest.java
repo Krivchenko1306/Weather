@@ -20,16 +20,17 @@ public class HttpRequest {
 
     private static String WEATHER_DATE_URL = "http://api.openweathermap.org/data/2.5/weather?q=Kharkiv,UA&appid=a0613a0a4fc49bd71446e8de5039cd56";
     private static String IMAGE_URL = "http://openweathermap.org/img/w/";
+    private static String PNG = ".png";
 
-    public static String getWeatherData(String param) {
+    public static String getWeatherData() {
         String url = WEATHER_DATE_URL;
         String inputLine;
+
 
         try {
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestMethod("GET");
-            System.out.println("\nSending 'GET' request to URL : " + url);
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             StringBuffer response = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
@@ -50,12 +51,12 @@ public class HttpRequest {
 
     public byte[] getImage(String code) {
         String url = IMAGE_URL;
+        String png = PNG;
         InputStream is = null;
         try {
-            URL obj = new URL(url + code);
+            URL obj = new URL(url + code + png);
             HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
             connection.setRequestMethod("GET");
-            System.out.println("Image url: " + url + code);
 
             //Read the response
             is = connection.getInputStream();

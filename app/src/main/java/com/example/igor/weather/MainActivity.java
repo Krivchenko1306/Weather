@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,18 +19,26 @@ public class MainActivity extends AppCompatActivity {
     private TextView cityView;
     private TextView tempView;
     private ImageView condIcon;
+    private Button button;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cityView = (TextView) findViewById(R.id.cityView);
-        tempView = (TextView) findViewById(R.id.tempView);
-        condIcon = (ImageView) findViewById(R.id.condIcon);
+        cityView = findViewById(R.id.cityView);
+        tempView = findViewById(R.id.tempView);
+        condIcon = findViewById(R.id.condIcon);
+        button = findViewById(R.id.button);
 
-        JSONWeatherTask task = new JSONWeatherTask();
-        task.execute(new String[]{});
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JSONWeatherTask task  = new JSONWeatherTask();
+                task.execute();
+            }
+        });
 
     }
     private class JSONWeatherTask extends AsyncTask<String,Void,WeatherModel>{
@@ -36,13 +46,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected WeatherModel doInBackground(String...params){
             WeatherModel weather = new WeatherModel();
-            String data = ((new HttpRequest()).getWeatherData(params[0]));
+            String data = ((new HttpRequest()).getWeatherData());
 
             try{
                 weather = Parser.getWeather(data);
-
                 weather.iconData = ((new HttpRequest()).getImage(weather.currentCondition.getIcon()));
-
             }catch (JSONException e){
                 e.printStackTrace();
             }
@@ -58,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 condIcon.setImageBitmap(img);
             }
             cityView.setText("Kharkov");
-            tempView.setText("temp: " + weather.main.getTemp());
+            tempView.setText("temp: " + Math.round(weather.main.getTemp() - 273.15));
         }
     }
 }

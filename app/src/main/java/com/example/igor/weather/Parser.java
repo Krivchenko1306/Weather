@@ -2,6 +2,7 @@ package com.example.igor.weather;
 
 import com.example.igor.weather.model.WeatherModel;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,6 +11,7 @@ import org.json.JSONObject;
  */
 
 public class Parser {
+
     public static WeatherModel getWeather(String data) throws JSONException {
 
         WeatherModel model = new WeatherModel();
@@ -20,7 +22,9 @@ public class Parser {
         model.coord.setLongitude(getFloat("lon", JSONCoord));
         model.coord.setLatitude(getFloat("lat",JSONCoord));
 
-        JSONObject JSONWeather = getObject("weather",jObj);
+        JSONArray jArr = jObj.getJSONArray("weather");
+
+        JSONObject JSONWeather = jArr.getJSONObject(0);
         model.currentCondition.setIcon(getString("icon", JSONWeather));
         model.currentCondition.setDescription(getString("description", JSONWeather));
         model.currentCondition.setMain(getString("main", JSONWeather));
@@ -50,7 +54,7 @@ public class Parser {
         model.dt.setDtValue(getInt("dt", jObj));
 
         JSONObject JSONSys = getObject("sys", jObj);
-        model.sys.setCounrty(getString("counrty",JSONSys));
+        model.sys.setCounrty(getString("country",JSONSys));
         model.sys.setSunrise(getInt("sunrise",JSONSys));
         model.sys.setSunset(getInt("sunset",JSONSys));
         model.sys.setId(getInt("id",JSONSys));

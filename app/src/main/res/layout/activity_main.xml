@@ -8,31 +8,42 @@
 
     <ImageView
         android:id="@+id/condIcon"
-        android:layout_width="204dp"
-        android:layout_height="119dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="115dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cityView"
         app:srcCompat="@android:drawable/screen_background_light" />
 
     <TextView
         android:id="@+id/tempView"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_width="98dp"
+        android:layout_height="33dp"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/condIcon" />
 
     <TextView
         android:id="@+id/cityView"
-        android:layout_width="92dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="97dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="48dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="115dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="32dp"
+        android:text="Get"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tempView" />
 </android.support.constraint.ConstraintLayout>
