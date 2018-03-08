@@ -1,4 +1,4 @@
-package com.example.igor.weather;
+package com.example.igor.weather.parser;
 
 import com.example.igor.weather.model.WeatherModel;
 
@@ -10,7 +10,7 @@ import org.json.JSONObject;
  * Created by Igor on 1/23/2018.
  */
 
-public class Parser {
+public class ParserForWeather {
 
     public static WeatherModel getWeather(String data) throws JSONException {
 

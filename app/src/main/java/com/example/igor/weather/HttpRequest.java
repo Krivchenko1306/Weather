@@ -1,6 +1,5 @@
 package com.example.igor.weather;
 
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -20,6 +19,7 @@ public class HttpRequest {
 
     private static String WEATHER_DATE_URL = "http://api.openweathermap.org/data/2.5/weather?q=Kharkiv,UA&appid=a0613a0a4fc49bd71446e8de5039cd56";
     private static String IMAGE_URL = "http://openweathermap.org/img/w/";
+    private static String WEATHER_FORECAST_URL = "http://api.openweathermap.org/data/2.5/forecast?q=Kharkiv,Ukr&Appid=a0613a0a4fc49bd71446e8de5039cd56";
     private static String PNG = ".png";
 
     public static String getWeatherData() {
@@ -72,6 +72,31 @@ public class HttpRequest {
             t.printStackTrace();
         } finally {
             try { is.close(); } catch (Throwable t) {}
+        }
+        return null;
+    }
+
+    public static String getForecastData(){
+        String url = WEATHER_FORECAST_URL;
+        String inputLine;
+
+        try{
+            URL obj = new URL(url);
+            HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+            connection.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuffer responce = new StringBuffer();
+            while((inputLine = in.readLine()) != null){
+                responce.append(inputLine);
+            }
+            in.close();
+            return responce.toString();
+        }catch(MalformedURLException e){
+            e.printStackTrace();
+        }catch (ProtocolException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
         }
         return null;
     }
