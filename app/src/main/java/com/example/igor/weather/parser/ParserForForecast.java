@@ -15,17 +15,19 @@ public class ParserForForecast {
     public static ForecastModel getForecast(String data) throws JSONException {
 
         ForecastModel forecastModel = new ForecastModel();
+
         JSONObject jObj = new JSONObject(data);
 
         forecastModel.cod.setCodeValue(getString("cod", jObj));
         forecastModel.message.setMessage(getDouble("message", jObj));
         forecastModel.cnt.setCnt(getInt("cnt", jObj));
 
+        JSONObject currentModel = new JSONObject();
         JSONArray jArr = jObj.getJSONArray("list");
 
-        for (int i = 0; i < jArr.length(); i++) {
+        for (int i = 0;i < jArr.length(); i++) {
 
-            JSONObject currentModel = jArr.getJSONObject(i);
+            currentModel = jArr.getJSONObject(i);
 
             forecastModel.objectModelFromList.dt.setDt(getInt("dt", currentModel));
 
@@ -39,7 +41,7 @@ public class ParserForForecast {
             forecastModel.objectModelFromList.main.setHumidity(getInt("humidity", JSONMain));
             forecastModel.objectModelFromList.main.setTemp_kf(getDouble("temp_kf", JSONMain));
 
-            JSONArray jsonWeatherArr = currentModel.getJSONArray("weather");
+           JSONArray jsonWeatherArr = currentModel.getJSONArray("weather");
 
             JSONObject JSONWeather = jsonWeatherArr.getJSONObject(0);
             forecastModel.objectModelFromList.weather.setId(getInt("id", JSONWeather));
@@ -60,8 +62,8 @@ public class ParserForForecast {
             forecastModel.objectModelFromList.dtTxt.setDt_txt(getString("dt_txt", currentModel));
 
             forecastModel.list.getObjectModelFromList().add(forecastModel.objectModelFromList);
+            }
 
-        }
             JSONObject JSONCity = jObj.getJSONObject("city");
             forecastModel.city.setId(getInt("id",JSONCity));
             forecastModel.city.setName(getString("name",JSONCity));

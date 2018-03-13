@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 public class ParserForWeather {
 
+
     public static WeatherModel getWeather(String data) throws JSONException {
 
         WeatherModel model = new WeatherModel();

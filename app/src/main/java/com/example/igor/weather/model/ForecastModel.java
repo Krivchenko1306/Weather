@@ -12,8 +12,9 @@ public class ForecastModel {
     public Message message = new Message();
     public Cnt cnt = new Cnt();
     public List list = new List();
-    public City city = new City();
     public ObjectModelFromList objectModelFromList = new ObjectModelFromList();
+    public City city = new City();
+
 
     public class Cod{
         private String codeValue ;
@@ -57,6 +58,10 @@ public class ForecastModel {
 
        public ArrayList<ObjectModelFromList> getObjectModelFromList(){
            return MFarray;
+         }
+
+         public void setObjectModelFromList(ObjectModelFromList obj){
+           MFarray.add(obj);
          }
      }
      public class ObjectModelFromList {

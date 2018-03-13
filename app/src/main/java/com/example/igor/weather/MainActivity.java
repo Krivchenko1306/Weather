@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -14,11 +13,12 @@ import com.example.igor.weather.model.ForecastModel;
 import com.example.igor.weather.model.WeatherModel;
 import com.example.igor.weather.parser.ParserForForecast;
 import com.example.igor.weather.parser.ParserForWeather;
+import com.example.igor.weather.time.Time;
 
 import org.json.JSONException;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,8 +34,13 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView listWithForecast;
 
+    private TextView textDate;
+
     @Override
      protected void onCreate(Bundle savedInstanceState) {
+
+        Time time = new Time();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -51,12 +56,16 @@ public class MainActivity extends AppCompatActivity {
 
         listWithForecast = findViewById(R.id.listWithForecast);
 
+        textDate = findViewById(R.id.textDate);
+
         JSONWeatherTask weatherTask  = new JSONWeatherTask();
         weatherTask.execute();
 
         JSONForecastTask forecastTask = new JSONForecastTask();
         forecastTask.execute();
 
+
+        textDate.setText(time.getDateAndTime());
 
 
     }
@@ -78,14 +87,14 @@ public class MainActivity extends AppCompatActivity {
         protected  void onPostExecute(ForecastModel forecast){
             super.onPostExecute(forecast);
 
-            forecast.objectModelFromList = forecast.list.getObjectModelFromList().get(0);
-            textMessage.setText("Message: " + forecast.objectModelFromList.dt.getDt());
-            forecastTempView.setText("Main: " + forecast.objectModelFromList.main.getTemp());
-            forecastMainView.setText("Message: " + forecast.objectModelFromList.weather.getMain());
+            String s = forecast.list.getObjectModelFromList().get(8).dtTxt.getDt_txt();
+            textMessage.setText(s);
+
+            for(int i =0; i < forecast.list.getObjectModelFromList().size();i++){
+                System.out.println(forecast.list.getObjectModelFromList().get(i).main.getTemp() + '\n');
+            }
         }
-
     }
-
 
         private class JSONWeatherTask extends AsyncTask<String,Void,WeatherModel>{
 
@@ -117,15 +126,5 @@ public class MainActivity extends AppCompatActivity {
             mainView.setText("main: " + weather.currentCondition.getMain());
             descriptionView.setText("description: " + weather.currentCondition.getDescription());
         }
-    }
-
-    public static String Datetime()
-    {
-        Calendar c = Calendar .getInstance();
-        //System.out.println("Current time => "+c.getTime());
-        String formattedDate;
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mms");
-        formattedDate = df.format(c.getTime());
-        return formattedDate;
     }
 }
