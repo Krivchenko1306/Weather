@@ -22,12 +22,12 @@ public class ParserForForecast {
         forecastModel.message.setMessage(getDouble("message", jObj));
         forecastModel.cnt.setCnt(getInt("cnt", jObj));
 
-        JSONObject currentModel = new JSONObject();
+
         JSONArray jArr = jObj.getJSONArray("list");
 
         for (int i = 0;i < jArr.length(); i++) {
 
-            currentModel = jArr.getJSONObject(i);
+         JSONObject currentModel = jArr.getJSONObject(i);
 
             forecastModel.objectModelFromList.dt.setDt(getInt("dt", currentModel));
 
@@ -62,6 +62,7 @@ public class ParserForForecast {
             forecastModel.objectModelFromList.dtTxt.setDt_txt(getString("dt_txt", currentModel));
 
             forecastModel.list.getObjectModelFromList().add(forecastModel.objectModelFromList);
+
             }
 
             JSONObject JSONCity = jObj.getJSONObject("city");

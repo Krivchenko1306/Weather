@@ -29,17 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView descriptionView;
 
     private TextView textMessage;
-    private TextView forecastTempView;
-    private TextView forecastMainView;
 
     private ListView listWithForecast;
 
-    private TextView textDate;
-
     @Override
      protected void onCreate(Bundle savedInstanceState) {
-
-        Time time = new Time();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -51,23 +45,14 @@ public class MainActivity extends AppCompatActivity {
         descriptionView = findViewById(R.id.descriptionView);
 
         textMessage = findViewById(R.id.textViewMessage);
-        forecastTempView = findViewById(R.id.forecastTempView);
-        forecastMainView = findViewById(R.id.forecastMainView);
 
         listWithForecast = findViewById(R.id.listWithForecast);
-
-        textDate = findViewById(R.id.textDate);
 
         JSONWeatherTask weatherTask  = new JSONWeatherTask();
         weatherTask.execute();
 
         JSONForecastTask forecastTask = new JSONForecastTask();
         forecastTask.execute();
-
-
-        textDate.setText(time.getDateAndTime());
-
-
     }
     private class JSONForecastTask extends AsyncTask<String,Void,ForecastModel>{
         @Override
@@ -89,10 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
             String s = forecast.list.getObjectModelFromList().get(8).dtTxt.getDt_txt();
             textMessage.setText(s);
-
-            for(int i =0; i < forecast.list.getObjectModelFromList().size();i++){
-                System.out.println(forecast.list.getObjectModelFromList().get(i).main.getTemp() + '\n');
-            }
         }
     }
 

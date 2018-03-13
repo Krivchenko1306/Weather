@@ -258,7 +258,6 @@ public class ForecastModel {
         }
     }
 
-
     public class City{
 
         public Coord coord = new Coord();
@@ -322,6 +321,5 @@ public class ForecastModel {
             this.population = population;
         }
     }
-
 }
 
