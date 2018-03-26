@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.igor.weather.model.ForecastModel;
+import com.example.igor.weather.model.ObjectModelFromList;
 import com.example.igor.weather.model.WeatherModel;
 import com.example.igor.weather.parser.ParserForForecast;
 import com.example.igor.weather.parser.ParserForString;
@@ -18,8 +19,7 @@ import com.example.igor.weather.time.Time;
 
 import org.json.JSONException;
 
-
-
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,9 +29,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView mainView;
     private TextView descriptionView;
 
-    private TextView textMessage;
+    private TextView textViewDay1Descr;
+    private TextView textViewDay2Descr;
+    private TextView textViewDay3Descr;
+    private TextView textViewDay4Descr;
+    private TextView textViewDay5Descr;
 
-    private ListView listWithForecast;
 
     Time time = new Time();
     ParserForString parserForString = new ParserForString();
@@ -47,9 +50,11 @@ public class MainActivity extends AppCompatActivity {
         mainView = findViewById(R.id.mainView);
         descriptionView = findViewById(R.id.descriptionView);
 
-        textMessage = findViewById(R.id.textViewMessage);
-
-        listWithForecast = findViewById(R.id.listWithForecast);
+        textViewDay1Descr = findViewById(R.id.textViewDay1_4);
+        textViewDay2Descr = findViewById(R.id.textViewDay2_4);
+        textViewDay3Descr = findViewById(R.id.textViewDay3_4);
+        textViewDay4Descr = findViewById(R.id.textViewDay4_4);
+        textViewDay5Descr = findViewById(R.id.textViewDay5_4);
 
         JSONWeatherTask weatherTask  = new JSONWeatherTask();
         weatherTask.execute();
@@ -80,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
             int res[];
             int resTime[];
 
+            ArrayList<String> listWithDescription = new ArrayList<>();
+
             for(int i = 0; i < forecast.list.getObjectModelFromList().size(); i++){
                 String fullString = forecast.list.getObjectModelFromList().get(i).dtTxt.getDt_txt(); //contains dtTxt of ObjectFromlist
 
@@ -89,29 +96,32 @@ public class MainActivity extends AppCompatActivity {
                 String[] partWithFullTime = fullString.split("(?= )"); //get array with time and date
                 String partWithTime = partWithFullTime[1]; //contains full time, [0] - it's full date
                 String[] partWithFullTime1 = partWithTime.split(":");//contains parse time
-              // String[] test = partWithFullTime1[0].split(" ");
 
                res = parserForString.getArrayWithDate(partWithParseData);
                resTime = parserForString.getArrayWithTime(partWithFullTime1);
 
-               if(res[2] != time.getDay() && resTime[0] == 9) {
-                   System.out.println("Date: " + res[2]);
-                   System.out.println("hours: " + resTime[0]);
-               }
+                if(res[2] != time.getDay() && resTime[0] == 12){
+                    forecast.list.getObjectModelFromList().get(i).weather.getDescription();
+                    listWithDescription.add(forecast.list.getObjectModelFromList()
+                            .get(i).weather.getDescription());
+                }
 
-
-
+               /* if(res[2] != time.getDay() && (resTime[0] == 6
+                       || resTime[0] == 9 || resTime[0] == 12
+                       || resTime[0] == 15 || resTime[0] == 18)) {
+                   listWithSortObject.add(forecast.list.getObjectModelFromList().get(i));
+               }*/
             }
 
-
-
-            // parserForString.setFullString(forecast.list.getObjectModelFromList().get(2).dtTxt.getDt_txt());
-           // System.out.println(parserForString.getArrayWithDate());
-
+            textViewDay1Descr.setText(listWithDescription.get(0));
+            textViewDay2Descr.setText(listWithDescription.get(1));
+            textViewDay3Descr.setText(listWithDescription.get(2));
+            textViewDay4Descr.setText(listWithDescription.get(3));
+            textViewDay5Descr.setText(listWithDescription.get(4));
         }
     }
 
-        private class JSONWeatherTask extends AsyncTask<String,Void,WeatherModel>{
+    private class JSONWeatherTask extends AsyncTask<String,Void,WeatherModel>{
 
         @Override
         protected WeatherModel doInBackground(String...params){
