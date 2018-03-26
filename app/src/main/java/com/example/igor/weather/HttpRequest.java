@@ -26,7 +26,6 @@ public class HttpRequest {
         String url = WEATHER_DATE_URL;
         String inputLine;
 
-
         try {
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();

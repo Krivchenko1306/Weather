@@ -1,6 +1,7 @@
 package com.example.igor.weather.parser;
 
 import com.example.igor.weather.model.ForecastModel;
+import com.example.igor.weather.model.ObjectModelFromList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,46 +23,47 @@ public class ParserForForecast {
         forecastModel.message.setMessage(getDouble("message", jObj));
         forecastModel.cnt.setCnt(getInt("cnt", jObj));
 
-
         JSONArray jArr = jObj.getJSONArray("list");
 
         for (int i = 0;i < jArr.length(); i++) {
 
-         JSONObject currentModel = jArr.getJSONObject(i);
+            ObjectModelFromList objectModelFromList = new ObjectModelFromList();
+
+            JSONObject currentModel = jArr.getJSONObject(i);
 
             forecastModel.objectModelFromList.dt.setDt(getInt("dt", currentModel));
 
             JSONObject JSONMain = getObject("main", currentModel);
-            forecastModel.objectModelFromList.main.setTemp(getDouble("temp", JSONMain));
-            forecastModel.objectModelFromList.main.setTemp_min(getDouble("temp_min", JSONMain));
-            forecastModel.objectModelFromList.main.setTemp_max(getDouble("temp_max", JSONMain));
-            forecastModel.objectModelFromList.main.setPressure(getDouble("pressure", JSONMain));
-            forecastModel.objectModelFromList.main.setSea_level(getDouble("sea_level", JSONMain));
-            forecastModel.objectModelFromList.main.setGrnd_level(getDouble("grnd_level", JSONMain));
-            forecastModel.objectModelFromList.main.setHumidity(getInt("humidity", JSONMain));
-            forecastModel.objectModelFromList.main.setTemp_kf(getDouble("temp_kf", JSONMain));
+            objectModelFromList.main.setTemp(getDouble("temp", JSONMain));
+            objectModelFromList.main.setTemp_min(getDouble("temp_min", JSONMain));
+            objectModelFromList.main.setTemp_max(getDouble("temp_max", JSONMain));
+            objectModelFromList.main.setPressure(getDouble("pressure", JSONMain));
+            objectModelFromList.main.setSea_level(getDouble("sea_level", JSONMain));
+            objectModelFromList.main.setGrnd_level(getDouble("grnd_level", JSONMain));
+            objectModelFromList.main.setHumidity(getInt("humidity", JSONMain));
+            objectModelFromList.main.setTemp_kf(getDouble("temp_kf", JSONMain));
 
            JSONArray jsonWeatherArr = currentModel.getJSONArray("weather");
 
             JSONObject JSONWeather = jsonWeatherArr.getJSONObject(0);
-            forecastModel.objectModelFromList.weather.setId(getInt("id", JSONWeather));
-            forecastModel.objectModelFromList.weather.setMain(getString("main", JSONWeather));
-            forecastModel.objectModelFromList.weather.setDescription(getString("description", JSONWeather));
-            forecastModel.objectModelFromList.weather.setIcon(getString("icon", JSONWeather));
+            objectModelFromList.weather.setId(getInt("id", JSONWeather));
+            objectModelFromList.weather.setMain(getString("main", JSONWeather));
+            objectModelFromList.weather.setDescription(getString("description", JSONWeather));
+            objectModelFromList.weather.setIcon(getString("icon", JSONWeather));
 
             JSONObject JSONClouds = currentModel.getJSONObject("clouds");
-            forecastModel.objectModelFromList.clouds.setAll(getInt("all", JSONClouds));
+            objectModelFromList.clouds.setAll(getInt("all", JSONClouds));
 
             JSONObject JSONWind = currentModel.getJSONObject("wind");
-            forecastModel.objectModelFromList.wind.setSpeed(getDouble("speed", JSONWind));
-            forecastModel.objectModelFromList.wind.setDeg(getDouble("deg", JSONWind));
+            objectModelFromList.wind.setSpeed(getDouble("speed", JSONWind));
+            objectModelFromList.wind.setDeg(getDouble("deg", JSONWind));
 
             JSONObject JSONSys = currentModel.getJSONObject("sys");
-            forecastModel.objectModelFromList.sys.setPod(getString("pod", JSONSys));
+            objectModelFromList.sys.setPod(getString("pod", JSONSys));
 
-            forecastModel.objectModelFromList.dtTxt.setDt_txt(getString("dt_txt", currentModel));
+            objectModelFromList.dtTxt.setDt_txt(getString("dt_txt", currentModel));
 
-            forecastModel.list.getObjectModelFromList().add(forecastModel.objectModelFromList);
+            forecastModel.list.getObjectModelFromList().add(objectModelFromList);
 
             }
 

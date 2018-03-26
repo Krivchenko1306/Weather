@@ -12,12 +12,13 @@ import android.widget.TextView;
 import com.example.igor.weather.model.ForecastModel;
 import com.example.igor.weather.model.WeatherModel;
 import com.example.igor.weather.parser.ParserForForecast;
+import com.example.igor.weather.parser.ParserForString;
 import com.example.igor.weather.parser.ParserForWeather;
 import com.example.igor.weather.time.Time;
 
 import org.json.JSONException;
 
-import java.util.ArrayList;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView listWithForecast;
 
+    Time time = new Time();
+    ParserForString parserForString = new ParserForString();
     @Override
      protected void onCreate(Bundle savedInstanceState) {
 
@@ -53,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         JSONForecastTask forecastTask = new JSONForecastTask();
         forecastTask.execute();
+
+
     }
     private class JSONForecastTask extends AsyncTask<String,Void,ForecastModel>{
         @Override
@@ -72,8 +77,37 @@ public class MainActivity extends AppCompatActivity {
         protected  void onPostExecute(ForecastModel forecast){
             super.onPostExecute(forecast);
 
-            String s = forecast.list.getObjectModelFromList().get(8).dtTxt.getDt_txt();
-            textMessage.setText(s);
+            int res[];
+            int resTime[];
+
+            for(int i = 0; i < forecast.list.getObjectModelFromList().size(); i++){
+                String fullString = forecast.list.getObjectModelFromList().get(i).dtTxt.getDt_txt(); //contains dtTxt of ObjectFromlist
+
+                String[] partWithFullData = fullString.split(" "); // string with full data
+                String[] partWithParseData = partWithFullData[0].split("(-)"); // array with parse date (year,month,day)
+
+                String[] partWithFullTime = fullString.split("(?= )"); //get array with time and date
+                String partWithTime = partWithFullTime[1]; //contains full time, [0] - it's full date
+                String[] partWithFullTime1 = partWithTime.split(":");//contains parse time
+              // String[] test = partWithFullTime1[0].split(" ");
+
+               res = parserForString.getArrayWithDate(partWithParseData);
+               resTime = parserForString.getArrayWithTime(partWithFullTime1);
+
+               if(res[2] != time.getDay() && resTime[0] == 9) {
+                   System.out.println("Date: " + res[2]);
+                   System.out.println("hours: " + resTime[0]);
+               }
+
+
+
+            }
+
+
+
+            // parserForString.setFullString(forecast.list.getObjectModelFromList().get(2).dtTxt.getDt_txt());
+           // System.out.println(parserForString.getArrayWithDate());
+
         }
     }
 
