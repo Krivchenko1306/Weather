@@ -19,7 +19,11 @@ import com.example.igor.weather.time.Time;
 
 import org.json.JSONException;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
             int resTime[];
 
             ArrayList<String> listWithDescription = new ArrayList<>();
+            ArrayList<String> listWithDay = new ArrayList<>();
+            ArrayList<String> listWithIcon = new ArrayList<>();
+            ArrayList<Double> listWithMaxTemp = new ArrayList<>();
+            ArrayList<Double> listWithMinTemp = new ArrayList<>();
 
             for(int i = 0; i < forecast.list.getObjectModelFromList().size(); i++){
                 String fullString = forecast.list.getObjectModelFromList().get(i).dtTxt.getDt_txt(); //contains dtTxt of ObjectFromlist
@@ -104,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
                     forecast.list.getObjectModelFromList().get(i).weather.getDescription();
                     listWithDescription.add(forecast.list.getObjectModelFromList()
                             .get(i).weather.getDescription());
+                    listWithDay.add(forecast.list.getObjectModelFromList().get(i).dtTxt.getDt_txt());
+                    listWithIcon.add(forecast.list.getObjectModelFromList().get(i).weather.getIcon());
                 }
 
                /* if(res[2] != time.getDay() && (resTime[0] == 6
@@ -112,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
                    listWithSortObject.add(forecast.list.getObjectModelFromList().get(i));
                }*/
             }
-
             textViewDay1Descr.setText(listWithDescription.get(0));
             textViewDay2Descr.setText(listWithDescription.get(1));
             textViewDay3Descr.setText(listWithDescription.get(2));
