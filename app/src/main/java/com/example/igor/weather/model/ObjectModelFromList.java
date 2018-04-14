@@ -101,7 +101,7 @@ public class ObjectModelFromList {
         }
     }
 
-    public class Weather{
+    public class Weather {
         private int id;
         private String main;
         private String description;
@@ -140,7 +140,7 @@ public class ObjectModelFromList {
         }
     }
 
-    public class Clouds{
+    public class Clouds {
         private int all;
 
         public int getAll() {
@@ -152,7 +152,7 @@ public class ObjectModelFromList {
         }
     }
 
-    public class Wind{
+    public class Wind {
         private double speed;
         private double deg;
 
@@ -173,7 +173,7 @@ public class ObjectModelFromList {
         }
     }
 
-    public class Sys{
+    public class Sys {
         private String pod;
 
         public String getPod() {
@@ -185,7 +185,7 @@ public class ObjectModelFromList {
         }
     }
 
-    public class Dt_txt{
+    public class Dt_txt {
         private String dt_txt;
 
         public String getDt_txt() {

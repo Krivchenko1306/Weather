@@ -11,7 +11,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cityView"
         app:srcCompat="@android:drawable/screen_background_light" />
@@ -19,9 +19,9 @@
     <TextView
         android:id="@+id/tempView"
         android:layout_width="100dp"
-        android:layout_height="73dp"
+        android:layout_height="70dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="76dp"
         android:textSize="60sp"
         app:layout_constraintStart_toEndOf="@+id/condIcon"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,33 +38,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/mainView"
-        android:layout_width="154dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/descriptionView"
-        android:layout_width="160dp"
-        android:layout_height="63dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="76dp"
         android:text="TextView"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainView" />
+        app:layout_constraintStart_toEndOf="@+id/tempView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageViewDay1"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/condIcon"
         app:srcCompat="@android:drawable/screen_background_light" />
@@ -73,8 +62,8 @@
         android:id="@+id/imageViewDay2"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewDay1"
         app:srcCompat="@android:drawable/screen_background_light" />
@@ -83,8 +72,8 @@
         android:id="@+id/imageViewDay3"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewDay2"
         app:srcCompat="@android:drawable/screen_background_light" />
@@ -93,29 +82,19 @@
         android:id="@+id/imageViewDay4"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewDay3"
-        app:srcCompat="@android:drawable/screen_background_light" />
-
-    <ImageView
-        android:id="@+id/imageViewDay5"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewDay4"
         app:srcCompat="@android:drawable/screen_background_light" />
 
     <TextView
         android:id="@+id/textViewDay1_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageViewDay1"
         app:layout_constraintTop_toBottomOf="@+id/tempView" />
 
@@ -123,9 +102,8 @@
         android:id="@+id/textViewDay1_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageViewDay1"
         app:layout_constraintTop_toBottomOf="@+id/textViewDay1_1" />
 
@@ -133,9 +111,9 @@
         android:id="@+id/textViewDay2_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="33dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageViewDay2"
         app:layout_constraintTop_toBottomOf="@+id/textViewDay1_2" />
 
@@ -143,9 +121,8 @@
         android:id="@+id/textViewDay2_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageViewDay2"
         app:layout_constraintTop_toBottomOf="@+id/textViewDay2_1" />
 
@@ -153,9 +130,9 @@
         android:id="@+id/textViewDay3_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="33dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageViewDay3"
         app:layout_constraintTop_toBottomOf="@+id/textViewDay2_2" />
 
@@ -163,9 +140,8 @@
         android:id="@+id/textViewDay3_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageViewDay3"
         app:layout_constraintTop_toBottomOf="@+id/textViewDay3_1" />
 
@@ -173,9 +149,9 @@
         android:id="@+id/textViewDay4_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="33dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageViewDay4"
         app:layout_constraintTop_toBottomOf="@+id/textViewDay3_2" />
 
@@ -183,39 +159,19 @@
         android:id="@+id/textViewDay4_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageViewDay4"
         app:layout_constraintTop_toBottomOf="@+id/textViewDay4_1" />
-
-    <TextView
-        android:id="@+id/textViewDay5_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageViewDay5"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDay4_2" />
-
-    <TextView
-        android:id="@+id/textViewDay5_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageViewDay5"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDay5_1" />
 
     <TextView
         android:id="@+id/textViewDay1_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textViewDay1_1"
         app:layout_constraintTop_toBottomOf="@+id/tempView" />
 
@@ -223,9 +179,10 @@
         android:id="@+id/textViewDay2_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="44dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textViewDay2_1"
         app:layout_constraintTop_toBottomOf="@+id/textViewDay1_3" />
 
@@ -233,9 +190,10 @@
         android:id="@+id/textViewDay3_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="44dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textViewDay3_1"
         app:layout_constraintTop_toBottomOf="@+id/textViewDay2_3" />
 
@@ -243,29 +201,21 @@
         android:id="@+id/textViewDay4_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="72dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textViewDay4_1"
         app:layout_constraintTop_toBottomOf="@+id/textViewDay3_3" />
-
-    <TextView
-        android:id="@+id/textView5_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="68dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textViewDay5_1"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDay4_3" />
 
     <TextView
         android:id="@+id/textViewDay1_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="40dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textViewDay1_3"
         app:layout_constraintTop_toBottomOf="@+id/descriptionView" />
 
@@ -273,9 +223,10 @@
         android:id="@+id/textViewDay2_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="44dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textViewDay2_3"
         app:layout_constraintTop_toBottomOf="@+id/textViewDay1_4" />
 
@@ -283,9 +234,10 @@
         android:id="@+id/textViewDay3_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textViewDay3_3"
         app:layout_constraintTop_toBottomOf="@+id/textViewDay2_4" />
 
@@ -293,20 +245,11 @@
         android:id="@+id/textViewDay4_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="68dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textViewDay4_3"
         app:layout_constraintTop_toBottomOf="@+id/textViewDay3_4" />
-
-    <TextView
-        android:id="@+id/textViewDay5_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="64dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView5_3"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDay4_4" />
 
 </android.support.constraint.ConstraintLayout>
